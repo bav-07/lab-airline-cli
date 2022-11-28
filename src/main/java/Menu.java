@@ -90,7 +90,8 @@ public class Menu {
         System.out.println(flights);
     }
 
-    public void bookPassengerOnFlight(){
+    public void bookPassengerOnFlight() throws Exception {
+
         // Get input from user on what is their ID
         System.out.println("Enter your unique passenger ID: ");
 
@@ -100,13 +101,28 @@ public class Menu {
 
         // Match the provided ID to a passenger
         // If the user ID is not found, continually prompt the user until a valid ID is provided
+        Passenger passenger = this.promptForPassengerId(userId);
+
+        // Prompt user for a flight ID
+        int flightId = scanner.nextInt();
+
+        // Match the flightID to a flight
+        int flightIndex = this.promptForFlightId(flightId);
+
+        // Book the passenger onto the flight
+        flights.get(flightIndex).addPassenger(passenger);
+        System.out.println(flights.get(flightIndex).getPassengers());
+    }
+
+    public Passenger promptForPassengerId(int userId){
+        Scanner scanner = new Scanner(System.in);
         boolean userIdRecognised = false;
         while (userIdRecognised == false) {
             for (int i = 0; i < passengers.size(); i++) {
                 if (userId == passengers.get(i).getId()) {
                     userIdRecognised = true;
                     System.out.println("Welcome " + passengers.get(i).getName() + ". Please provide the flight ID for your desired flight: ");
-                    break;
+                    return passengers.get(i);
                 }
             }
             if (userIdRecognised == false) {
@@ -114,26 +130,28 @@ public class Menu {
                 userId = scanner.nextInt();
             }
         }
+        // probably shouldn't have a return null here
+        return null;
+    }
 
-        // Prompt user for a flight ID
-        int flightId = scanner.nextInt();
-
-        // Match the flightID to a flight
+    public int promptForFlightId(int flightId) throws Exception {
         boolean flightIdRecognised = false;
         while (flightIdRecognised == false) {
             for (int i = 0; i < flights.size(); i++) {
                 if (flightId == flights.get(i).getId()) {
                     flightIdRecognised = true;
-                    System.out.println("You have been booked onto flight ID " + flights.get(i).getId() + ", destination " + flights.get(i).getDestination());
-                    break;
+                    System.out.println("You have been booked onto flight ID " + flights.get(i).getId() + ", destination " + flights.get(i).getDestination() + ".");
+                    return i;
                 }
             }
             if (flightIdRecognised == false) {
                 System.out.println("Flight ID not recognised, please try again: ");
+                Scanner scanner = new Scanner(System.in);
                 flightId = scanner.nextInt();
             }
         }
-
-
+        // not sure if i threw exception correctly here
+        throw new Exception("error: no ID found");
     }
+
 }
