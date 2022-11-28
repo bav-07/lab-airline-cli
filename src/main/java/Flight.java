@@ -12,6 +12,12 @@ public class Flight {
         this.passengers = new ArrayList<>();
     }
 
+    // METHODS
+    public void addPassenger(Passenger passenger) {
+        this.passengers.add(passenger);
+    }
+
+    // GETTERS & SETTERS
     public String getDestination() {
         return destination;
     }
