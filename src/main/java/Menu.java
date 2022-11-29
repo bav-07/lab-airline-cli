@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
 
@@ -13,6 +14,24 @@ public class Menu {
     }
 
     // METHODS
+    public int displayMenuOptions() throws InputMismatchException {
+        System.out.println("Welcome to BNTA Airways");
+        System.out.println("Please select from one of the following options, using the appropriate key");
+        System.out.println("Add a new flight [1]");
+        System.out.println("Display all available flights [2]");
+        System.out.println("Add a new passenger [3]");
+        System.out.println("Book a passenger onto a flight [4]");
+        System.out.println("Cancel a flight [5]");
+        Scanner scanner = new Scanner(System.in);
+        int selection;
+        try {
+            selection = scanner.nextInt();
+        } catch (Exception exception) {
+            throw new InputMismatchException("invalid input: please provide a number from 1 to 5.");
+        }
+        return selection;
+    }
+
     public void addFlight(){
 
         // Prompt user for flight destination
