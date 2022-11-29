@@ -17,8 +17,6 @@ public class Runner {
 ////        menu.addPassenger();
 //        menu.bookPassengerOnFlight();
 
-        AirlinesFileWriter.makeFile("/Users/bav/Documents/coursework/week_04/day_01/lab-airline-cli/file.txt",menu);
-
         do {
             int selection = menu.displayMenuOptions();
             if (selection == 1) {
@@ -43,6 +41,7 @@ public class Runner {
 
             }
             System.out.println("");
+            AirlinesFileWriter.makeFile("/Users/bav/Documents/coursework/week_04/day_01/lab-airline-cli/file.txt",menu);
         } while (true);
     }
 

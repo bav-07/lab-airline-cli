@@ -1,1 +1,7 @@
-"Passengers: "
+Passengers: 
+Bav Nagarajah|505035|0
+Sara Ahmed|869255|0
+--------------------
+Flights: 
+London|634264|[{Bav Nagarajah: 505035}, {Sara Ahmed: 869255}]
+London|544266|[]

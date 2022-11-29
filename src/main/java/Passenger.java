@@ -32,4 +32,12 @@ public class Passenger {
     public void setContactInfo(int contactInfo) {
         this.contactInfo = contactInfo;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+                name +
+                ": " + id +
+                '}';
+    }
 }
