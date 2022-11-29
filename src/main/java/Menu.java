@@ -45,7 +45,7 @@ public class Menu {
         Random id = new Random();
         int flightID = id.nextInt(100_000, 1_000_000);
         boolean isUniqueFlightId = false;
-        // Use a while loop to ensure a unique random number is generated
+        // Use a while loo to ensure a unique random number is generated
         while (isUniqueFlightId == false){
             flightID = id.nextInt(100_000, 1_000_000);
             isUniqueFlightId = checkIfUniqueFlightId(flightID);
