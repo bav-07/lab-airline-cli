@@ -21,17 +21,20 @@ public class Runner {
             if (selection == 1) {
                 menu.addFlight();
             }
-            if (selection == 2) {
+            else if (selection == 2) {
                 menu.displayAllFLights();
             }
-            if (selection == 3) {
+            else if (selection == 3) {
                 menu.addPassenger();
             }
-            if (selection == 4) {
+            else if (selection == 4) {
                 menu.bookPassengerOnFlight();
             }
-            if (selection == 5) {
+            else if (selection == 5) {
                 menu.cancelFLight();
+            }
+            else {
+                System.out.println("Please provide a valid key between 1 and 5.");
             }
             System.out.println("");
         } while (true);
