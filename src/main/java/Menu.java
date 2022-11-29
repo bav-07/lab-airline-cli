@@ -15,6 +15,7 @@ public class Menu {
 
     // METHODS
     public int displayMenuOptions() throws InputMismatchException {
+        System.out.println(" ");
         System.out.println("Welcome to BNTA Airways");
         System.out.println("Please select from one of the following options, using the appropriate key");
         System.out.println("Add a new flight [1]");
@@ -22,6 +23,7 @@ public class Menu {
         System.out.println("Add a new passenger [3]");
         System.out.println("Book a passenger onto a flight [4]");
         System.out.println("Cancel a flight [5]");
+        System.out.println(" ");
         Scanner scanner = new Scanner(System.in);
         int selection;
         try {
@@ -56,7 +58,8 @@ public class Menu {
 
         // Add flight to arraylist of flights
         flights.add(newFlight);
-        
+
+        System.out.println("Flight successfully added.");
         return newFlight;
 
         //System.out.println(flights);
@@ -65,6 +68,10 @@ public class Menu {
     }
 
     public void displayAllFLights(){
+        if (flights.isEmpty()) {
+            System.out.println("No flights available.");
+            return;
+        } 
         for (Flight flight : flights) {
             System.out.println(flight.toString());
         }

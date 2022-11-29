@@ -14,6 +14,7 @@ public class Runner {
 ////        menu.addPassenger();
 ////        menu.addPassenger();
 //        menu.bookPassengerOnFlight();
+        PassengerFileWriter.readFile("passengers.txt");
 
         do {
             int selection = menu.displayMenuOptions();
