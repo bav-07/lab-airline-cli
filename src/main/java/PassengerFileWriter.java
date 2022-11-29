@@ -13,7 +13,6 @@ public class PassengerFileWriter {
     public static void makeFile (String filePath, Menu menu, Passenger passenger) throws IOException {
 
         FileWriter outputFile;
-        //File file = new File(filePath);
         Path path = Paths.get(filePath);
         if (Files.notExists(path)){
             File file = new File(filePath);
