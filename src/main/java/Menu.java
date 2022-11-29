@@ -32,7 +32,7 @@ public class Menu {
         return selection;
     }
 
-    public void addFlight(){
+    public Flight addFlight(){
 
         // Prompt user for flight destination
         Scanner scanner = new Scanner(System.in);
@@ -56,6 +56,8 @@ public class Menu {
 
         // Add flight to arraylist of flights
         flights.add(newFlight);
+        
+        return newFlight;
 
         //System.out.println(flights);
         //System.out.println(flights.get(0).getDestination());
@@ -68,7 +70,7 @@ public class Menu {
         }
     }
 
-    public void addPassenger() {
+    public Passenger addPassenger() {
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter First name: ");
@@ -100,6 +102,9 @@ public class Menu {
         // System.out.println(passenger);
         // System.out.println(passengers.get(0).getName());
         // System.out.println(passengers.get(0).getId());
+        
+        // Write passenger to file
+        return passenger;
     }
 
     public void cancelFLight(){

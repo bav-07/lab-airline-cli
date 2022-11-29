@@ -1,5 +1,3 @@
-import java.util.Scanner;
-
 public class Runner {
 
     public static void main(String[] args) throws Exception {
@@ -20,13 +18,15 @@ public class Runner {
         do {
             int selection = menu.displayMenuOptions();
             if (selection == 1) {
-                menu.addFlight();
+                Flight flight = menu.addFlight();
+                FlightFileWriter.makeFile("/Users/bav/Documents/coursework/week_04/day_01/lab-airline-cli/flights.txt",menu,flight);
             }
             else if (selection == 2) {
                 menu.displayAllFLights();
             }
             else if (selection == 3) {
-                menu.addPassenger();
+                Passenger passenger = menu.addPassenger();
+                PassengerFileWriter.makeFile("/Users/bav/Documents/coursework/week_04/day_01/lab-airline-cli/passengers.txt",menu,passenger);
             }
             else if (selection == 4) {
                 menu.bookPassengerOnFlight();
@@ -41,7 +41,8 @@ public class Runner {
 
             }
             System.out.println("");
-            AirlinesFileWriter.makeFile("/Users/bav/Documents/coursework/week_04/day_01/lab-airline-cli/temp.txt",menu);
+
+
         } while (true);
     }
 
