@@ -119,7 +119,11 @@ public class Menu {
     }
 
     public void bookPassengerOnFlight() throws Exception {
-
+        
+        if (flights.isEmpty()) {
+            throw new Exception("No flights today");
+        }
+        
         // Get input from user on what is their ID
         System.out.println("Enter your unique passenger ID: ");
 
