@@ -41,7 +41,7 @@ public class Runner {
 
             }
             System.out.println("");
-            AirlinesFileWriter.makeFile("/Users/bav/Documents/coursework/week_04/day_01/lab-airline-cli/file.txt",menu);
+            AirlinesFileWriter.makeFile("/Users/bav/Documents/coursework/week_04/day_01/lab-airline-cli/temp.txt",menu);
         } while (true);
     }
 

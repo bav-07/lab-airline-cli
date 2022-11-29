@@ -7,12 +7,18 @@ import java.io.IOException;
 
 public class AirlinesFileWriter {
 
-    public static void makeFile (String filePath, Menu menu) {
+    public static void makeFile (String filePath, Menu menu) throws IOException {
 
+        FileWriter outputFile;
         File file = new File(filePath);
+        if (file.isFile()){
+            outputFile = new FileWriter(file);
+        }
+        else {
+            outputFile = new FileWriter(file, true);
+        }
         try {
 
-            FileWriter outputFile = new FileWriter(file);
             CSVWriter writer = new CSVWriter(outputFile, '|', CSVWriter.NO_QUOTE_CHARACTER, CSVWriter.DEFAULT_ESCAPE_CHARACTER, CSVWriter.DEFAULT_LINE_END);
 
             String[] header = {"Passengers: "};
