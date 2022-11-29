@@ -12,6 +12,7 @@ public class Menu {
         this.passengers = new ArrayList<>();
     }
 
+    // METHODS
     public void addFlight(){
 
         // Prompt user for flight destination
@@ -24,6 +25,12 @@ public class Menu {
         // Generate unique ID
         Random id = new Random();
         int flightID = id.nextInt(100_000, 1_000_000);
+        boolean isUniqueFlightId = false;
+        // Use a while loop to ensure a unique random number is generated
+        while (isUniqueFlightId == false){
+            flightID = id.nextInt(100_000, 1_000_000);
+            isUniqueFlightId = checkIfUniqueFlightId(flightID);
+        }
 
         // Use the Flight constructor with the above as arguments
         Flight newFlight = new Flight(destination, flightID);
@@ -34,8 +41,6 @@ public class Menu {
         //System.out.println(flights);
         //System.out.println(flights.get(0).getDestination());
         //System.out.println(flights.get(0).getId());
-
-
     }
 
     public void displayAllFLights(){
@@ -58,7 +63,12 @@ public class Menu {
         // Generate unique ID
         Random id = new Random();
         int passengerID = id.nextInt(100_000, 1_000_000);
-        // Need to implement a way of ensuring the generated random number is unique and not shared by any other passengers in the collection
+        boolean isUniqueUserId = checkIfUniqueUserId(passengerID);
+        // Implements a way of ensuring the generated random number is unique and not shared by any other passengers in the collection
+        while (isUniqueUserId == false){
+            passengerID = id.nextInt(100_000, 1_000_000);
+            isUniqueUserId = checkIfUniqueUserId(passengerID);
+        }
 
         // Use the Passenger constructor with the above as arguments
         Passenger passenger = new Passenger(firstName + " " + lastName, passengerID);
@@ -84,7 +94,6 @@ public class Menu {
                 flights.remove(i);
                 break;
             }
-
         }
 
         System.out.println(flights);
@@ -102,8 +111,21 @@ public class Menu {
         // Match the provided ID to a passenger
         // If the user ID is not found, continually prompt the user until a valid ID is provided
         Passenger passenger = this.promptForPassengerId(userId);
+        scanner.nextLine();
+
+        // Prompt user for desired destination
+        System.out.println("Please enter your desired destination: ");
+        String destination = scanner.nextLine();
+        try {
+            checkForExistingDestinations(destination);
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+            exception.printStackTrace();
+            return;
+        }
 
         // Prompt user for a flight ID
+        System.out.println("Please enter the flight ID for your desired flight: ");
         int flightId = scanner.nextInt();
 
         // Match the flightID to a flight
@@ -111,7 +133,7 @@ public class Menu {
 
         // Book the passenger onto the flight
         flights.get(flightIndex).addPassenger(passenger);
-        System.out.println(flights.get(flightIndex).getPassengers());
+        //System.out.println(flights.get(flightIndex).getPassengers());
     }
 
     public Passenger promptForPassengerId(int userId){
@@ -121,7 +143,7 @@ public class Menu {
             for (int i = 0; i < passengers.size(); i++) {
                 if (userId == passengers.get(i).getId()) {
                     userIdRecognised = true;
-                    System.out.println("Welcome " + passengers.get(i).getName() + ". Please provide the flight ID for your desired flight: ");
+                    System.out.println("Welcome " + passengers.get(i).getName() + ".");
                     return passengers.get(i);
                 }
             }
@@ -132,6 +154,19 @@ public class Menu {
         }
         // probably shouldn't have a return null here
         return null;
+    }
+
+    public void checkForExistingDestinations(String destination) throws Exception {
+        int numOfFlights = 0;
+        for (Flight flight : flights) {
+            if (destination.equals(flight.getDestination())) {
+                System.out.println(flight.toString());
+                numOfFlights++;
+            }
+        }
+        if (numOfFlights == 0){
+            throw new Exception("No flights available for selected destination");
+        }
     }
 
     public int promptForFlightId(int flightId) throws Exception {
@@ -154,4 +189,40 @@ public class Menu {
         throw new Exception("error: no ID found");
     }
 
+    public boolean checkIfUniqueUserId(int passengerId){
+
+        for (Passenger passenger : passengers) {
+            if (passengerId == passenger.getId()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean checkIfUniqueFlightId(int flightId){
+
+        for (Flight flight : flights) {
+            if (flightId == flight.getId()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    // GETTERS & SETTERS
+    public ArrayList<Flight> getFlights() {
+        return flights;
+    }
+
+    public void setFlights(ArrayList<Flight> flights) {
+        this.flights = flights;
+    }
+
+    public ArrayList<Passenger> getPassengers() {
+        return passengers;
+    }
+
+    public void setPassengers(ArrayList<Passenger> passengers) {
+        this.passengers = passengers;
+    }
 }

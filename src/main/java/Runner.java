@@ -5,8 +5,8 @@ public class Runner {
         Menu menu = new Menu();
 
         menu.addFlight();
-//        menu.addFlight();
-//        menu.addFlight();
+        menu.addFlight();
+        menu.addFlight();
         menu.displayAllFLights();
 //        menu.cancelFLight();
 
